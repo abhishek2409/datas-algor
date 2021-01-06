@@ -1,27 +1,31 @@
-class Node {
+class DNode {
 	constructor(value) {
 		this.node = {
 			value,
-			next: null
+			next: null,
+			prev: null
 		}
 	}
 }
-class MyLinkedList {
+
+class MyDoubleLinkedList {
 	constructor(value) {
-		this.head = new Node(value)
+		this.head = new DNode(value);
 		this.tail = this.head;
-		this.length = 1;
+		this.length = 1
 	}
 	append(value) {
-		const newNode = new Node(value)
+		const newNode = new DNode(value)
+		newNode.prev = this.tail;
 		this.tail.next = newNode;
 		this.tail = newNode;
 		this.length++;
 		return this;
 	}
 	prepend(value) {
-		const newNode = new Node(value)
+		const newNode = new DNode(value);
 		newNode.next = this.head;
+		this.head.prev = newNode;
 		this.head = newNode;
 		this.length++;
 		return this;
@@ -45,7 +49,7 @@ class MyLinkedList {
 		return currentNode
 	}
 	insert(index, value) {
-		let newNode = new Node(value);
+		let newNode = new DNode(value);
 		if (index === 0) {
 			this.prepend(value);
 			this.length++;
@@ -59,6 +63,8 @@ class MyLinkedList {
 			const holdingPointer = leader.next;
 			leader.next = newNode;
 			newNode.next = holdingPointer;
+			newNode.prev = leader;
+			holdingPointer.prev = newNode;
 			this.length++;
 			return this;
 		}
@@ -73,44 +79,30 @@ class MyLinkedList {
 				const leader = this.trvarseToIndex(index - 1);
 				leader.next = null;
 			} else {
-				const leader = this.trvarseToIndex(index - 1);
-				const nodeToBeRemoved = leader.next;
-				leader.next = nodeToBeRemoved.next;
+				const leader = this.trvarseToIndex(index - 1); // 1
+				const nodeToBeRemoved = leader.next; // 2
+				const nextToRemovedNode = nodeToBeRemoved.next;
+				leader.next = nextToRemovedNode;
+				nextToRemovedNode.prev = leader;
 			}
 			this.length--;
 			return this;
 		}
 	}
-	reverse(){
-		if(!this.head.next) return this;
-		let firstNode = this.head;
-		let secondNode = firstNode.next;
-		this.tail = this.head
-		while(secondNode){
-			let temp = secondNode.next;
-			secondNode.next = firstNode
-			firstNode = secondNode;
-			secondNode = temp;
-		}
-		this.head.next = null;
-		this.head = firstNode;
-		return this.printList()
-	}
 }
 
-const myLinkedList = new MyLinkedList(24);
-myLinkedList.append("09")
-myLinkedList.append("1991")
-myLinkedList.prepend("Wadhawan");
-myLinkedList.prepend("Abhishek");
-// myLinkedList.insert(2, "=")
-// myLinkedList.insert(4, "=")
-// myLinkedList.insert(5, "=")
-// myLinkedList.remove(5)
-// myLinkedList.remove(2)
-// myLinkedList.remove(4)
-// myLinkedList.remove(4)
-// myLinkedList.remove(4)
-// console.log(myLinkedList.printList());
-console.log(myLinkedList.reverse());
-console.log(myLinkedList);
+const myDDList = new MyDoubleLinkedList(24)
+myDDList.append("09")
+myDDList.append("1991")
+myDDList.prepend("Wadhawan");
+myDDList.prepend("Abhishek");
+myDDList.insert(2, "=")
+// myDDList.insert(4, "=")
+// myDDList.insert(5, "=")
+// myDDList.remove(5)
+// myDDList.remove(2)
+// myDDList.remove(4)
+// myDDList.remove(4)
+// myDDList.remove(4)
+// console.log(myDDList.printList());
+// console.log(myDDList);
