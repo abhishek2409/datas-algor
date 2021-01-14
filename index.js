@@ -382,11 +382,11 @@ let map = new Map();
 map.set({}, {});
 map.set({}, {});
 for (const iterator of map.keys()) {
-  console.log(iterator);
+  // console.log(iterator);
 }
 for (const iterator of map.values()) {
-  console.log(iterator);
+  // console.log(iterator);
 }
 for (const iterator of map.entries()) {
-  console.log(iterator);
+  // console.log(iterator);
 }
