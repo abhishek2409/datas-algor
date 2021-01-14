@@ -140,8 +140,9 @@ function mergeSortArrays(arr1, arr2) {
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-  let low = 0,  high = nums.length - 1;
+var twoSum = function (nums, target) {
+  let low = 0,
+    high = nums.length - 1;
   while (low < high) {
     let s = nums[low] + nums[high]
     if (s === target) {
@@ -165,10 +166,10 @@ var twoSum = function(nums, target) {
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-const moveZeroes = function(nums) {
+const moveZeroes = function (nums) {
   let nonZeroIndex = 0;
   for (var i = 0; i < nums.length; i++) {
-    if(nums[i] != 0){
+    if (nums[i] != 0) {
       nums[nonZeroIndex] = nums[i]
       nonZeroIndex++
     }
@@ -187,15 +188,15 @@ const moveZeroes = function(nums) {
  * @param {number[]} nums
  * @return {number}
  */
-const maxSubArray = function(nums) {
+const maxSubArray = function (nums) {
   let bestSum = 0;
   let currentSum = 0;
   for (var x of nums) {
     currentSum = currentSum + x;
-    if(bestSum < currentSum){
+    if (bestSum < currentSum) {
       bestSum = currentSum
     }
-    if(currentSum < 0){
+    if (currentSum < 0) {
       currentSum = 0
     }
   }
@@ -210,13 +211,13 @@ const maxSubArray = function(nums) {
  * @param {number[]} nums
  * @return {boolean}
  */
-const containsDuplicate = function(nums) {
-    let duplicateContainer = {};
-    for (var item of nums) {
-      if(duplicateContainer[item]) return true
-      duplicateContainer[item] = 1
-    }
-    return false
+const containsDuplicate = function (nums) {
+  let duplicateContainer = {};
+  for (var item of nums) {
+    if (duplicateContainer[item]) return true
+    duplicateContainer[item] = 1
+  }
+  return false
 };
 
 // console.log(containsDuplicate([1,2,3,1]));
@@ -229,7 +230,7 @@ const containsDuplicate = function(nums) {
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-const rotate = function(nums, k) {
+const rotate = function (nums, k) {
   k = k % nums.length;
   replace(nums, 0, nums.length - 1)
   replace(nums, k, nums.length - 1)
@@ -253,9 +254,9 @@ const replace = (nums, start, end) => {
 function LongestWord(sen) {
   const splitted = sen.split(" ");
   let largestStr = ""
-  for(let item of splitted){
+  for (let item of splitted) {
     const formattedString = item.replace(/[^a-zA-Z]/g, "")
-    if(formattedString.length > largestStr.length){
+    if (formattedString.length > largestStr.length) {
       largestStr = formattedString
     }
   }
@@ -266,13 +267,126 @@ function LongestWord(sen) {
 /****ARRAY*****/
 
 
-let b = "10"
-// Clousres
-function a() {
-  let b = 20;
-  function c() {
-    // console.log(b);
+// let b = "10"
+// // Clousres
+// function a() {
+//   let b = 20;
+//   function c() {
+//     // console.log(b);
+//   }
+//   c()
+// }
+// a();
+
+
+// Object prototype
+function doSomething() {}
+doSomething.prototype.foo = "bar";
+var doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value";
+// console.log("doSomeInstancing.prop:      " + doSomeInstancing.prop);
+// console.log("doSomeInstancing.foo:       " + doSomeInstancing.foo);
+// console.log("doSomething.prop:           " + doSomething.prop);
+// console.log("doSomething.foo:            " + doSomething.foo);
+// console.log("doSomething.prototype.prop: " + doSomething.prototype.prop);
+// console.log("doSomething.prototype.foo:  " + doSomething.prototype.foo);
+
+
+
+// function foo(){
+//   const bar = "bar";
+//   if(true){
+//     console.log(bar);
+//     const bar = "bar1"
+//   }
+// }
+// foo();
+
+
+function braces(values) {
+  const bracesKeyMap = {
+    "{": {
+      "closedBrace": "}"
+    },
+    "(": {
+      "closedBrace": ")"
+    },
+    "[": {
+      "closedBrace": "]"
+    }
   }
-  c()
+  let resultArray = []
+  for (let i = 0; i < values.length; i++) {
+    let isClosed = false
+    const el = values[i];
+    const elArr = el.split("")
+    for (let j = 0; j < elArr.length; j++) {
+      const element = elArr[j];
+      if (bracesKeyMap[element]) {
+        if (bracesKeyMap[element].closedBrace === elArr[j + 1]) {
+          isClosed = true;
+          j++;
+        }
+      }
+    }
+    resultArray.push(isClosed);
+  }
+  return resultArray
 }
-a();
+
+// console.log(braces(['{}[]()', '{[}]']))
+
+
+
+let range = {
+  from: 1,
+  to: 5
+}
+
+range[Symbol.iterator] = function () {
+  return {
+    current: this.from,
+    last: this.to,
+
+    next() {
+      if (this.current <= this.last) {
+        return {
+          done: false,
+          value: this.current++
+        }
+      } else {
+        return {
+          done: true
+        }
+      }
+    }
+  }
+}
+// console.log(range);
+for (const num of range) {
+  // console.log(num);
+}
+
+function sumSalaries(obj) {
+  const values = Object.values(obj);
+  return values.reduce((acc, val)=> acc + val, 0);
+}
+
+// console.log(sumSalaries({
+//   "John": 100,
+//   "Pete": 300,
+//   "Mary": 250
+// }))
+
+let map = new Map();
+map.set({}, {});
+map.set({}, {});
+for (const iterator of map.keys()) {
+  console.log(iterator);
+}
+for (const iterator of map.values()) {
+  console.log(iterator);
+}
+for (const iterator of map.entries()) {
+  console.log(iterator);
+}

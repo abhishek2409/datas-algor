@@ -112,5 +112,5 @@ myLinkedList.prepend("Abhishek");
 // myLinkedList.remove(4)
 // myLinkedList.remove(4)
 // console.log(myLinkedList.printList());
-console.log(myLinkedList.reverse());
-console.log(myLinkedList);
+// console.log(myLinkedList.reverse());
+// console.log(myLinkedList);
