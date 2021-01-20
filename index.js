@@ -448,5 +448,67 @@ function reverseString(str) {
   return str.split("")
 }
 
-console.log(reverseString('yoyo mastery'))
+// console.log(reverseString('yoyo mastery'))
 //should return: 'yretsam oyoy'
+
+const unSortedNums = [1,21,34,2,87,8,90,109,1]
+console.log(unSortedNums);
+
+function bubbleSort(nums){
+  const numsLength = nums.length;
+  for (let i = 0; i < numsLength; i++) {
+    for (let j = 0; j < numsLength; j++) {
+      if(nums[j] > nums[j+1]){
+        let temp = nums[j];
+        nums[j] = nums[j+1]
+        nums[j+1] = temp
+      }
+    }
+  }
+  return nums
+}
+
+// console.log(bubbleSort(unSortedNums))
+
+function selectionSort(nums) {
+  const numsLength = nums.length;
+  for (let i = 0; i < numsLength; i++) {
+    let min = i;
+    let temp = nums[i]
+    for (let j = i+1; j < numsLength; j++) {
+      if(nums[j] < nums[min]){
+        min = j
+      }
+    }
+    nums[i] = nums[min];
+    nums[min] = temp
+  }
+  return nums
+}
+
+// console.log(selectionSort(unSortedNums))
+
+
+function insertionSort(array) {
+  const length = array.length;
+	for (let i = 0; i < length; i++) {
+		if (array[i] < array[0]) {
+      //move number to the first position
+      array.unshift(array.splice(i,1)[0]);
+    } else {
+      // only sort number smaller than number on the left of it. This is the part of insertion sort that makes it fast if the array is almost sorted.
+      if (array[i] < array[i-1]) {
+        //find where number should go
+        for (var j = 1; j < i; j++) {
+          if (array[i] >= array[j-1] && array[i] < array[j]) {
+            //move number to the right spot
+            array.splice(j,0,array.splice(i,1)[0]);
+          }
+        }
+      }
+    }
+  }
+  return array
+}
+
+console.log(insertionSort(unSortedNums))
