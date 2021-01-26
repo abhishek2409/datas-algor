@@ -1,4 +1,4 @@
-const input = [10, 20, 30, 10, 20, 40, 10]
+const input = [10, 20, 30, 10, 20, 40, 10];
 
 function sockMerchant1(n, ar) {
   let res = 0;
@@ -6,7 +6,7 @@ function sockMerchant1(n, ar) {
   for (var i = 0; i < n; i++) {
     if (ar[i] == ar[i + 1]) {
       i++;
-      res++
+      res++;
     }
   }
   return res;
@@ -24,33 +24,30 @@ function sockMerchant2(n, ar) {
       ones[ar[i]] = 0;
     }
   }
-  return pairs
+  return pairs;
 }
-
-
-
 
 function hasPairWithSum(data, sum) {
   let low = 0,
     high = data.length - 1;
   data.sort();
   while (low < high) {
-    let s = data[low] + data[high]
+    let s = data[low] + data[high];
     if (s === sum) {
       return true;
     }
     low++;
   }
-  return false
+  return false;
 }
 
 function hasPairWithSum2(arr, sum) {
   const mySet = new Set();
   const len = arr.length;
-  const finalArray = []
+  const finalArray = [];
   for (let i = 0; i < len; i++) {
     if (mySet.has(arr[i])) {
-      finalArray.push(i)
+      finalArray.push(i);
     }
     mySet.add(sum - arr[i]);
   }
@@ -65,27 +62,27 @@ function hasPairWithSum2(arr, sum) {
 function getInterSection1(arr1, arr2) {
   for (var i = 0; i < arr1.length; i++) {
     for (var i = 0; i < arr2.length; i++) {
-      if (arr2[i] === arr1[i]) return true
+      if (arr2[i] === arr1[i]) return true;
     }
   }
-  return false
+  return false;
 }
 
 // Big O(n)
 
 function getInterSection2(arr1, arr2) {
-  let obj = {}
+  let obj = {};
   for (var i = 0; i < arr1.length; i++) {
-    if (!obj[arr1[i]]) obj[arr1[i]] = true
+    if (!obj[arr1[i]]) obj[arr1[i]] = true;
   }
   for (var i = 0; i < arr2.length; i++) {
-    if (obj.hasOwnProperty([arr2[i]])) return true
+    if (obj.hasOwnProperty([arr2[i]])) return true;
   }
-  return false
+  return false;
 }
 
 function getInterSection3(arr1, arr2) {
-  return arr1.some(item => arr2.includes(item))
+  return arr1.some((item) => arr2.includes(item));
 }
 
 //
@@ -96,17 +93,17 @@ function getInterSection3(arr1, arr2) {
 /****ARRAY*****/
 // Q1 rev a string
 function revString1(str) {
-  if (!str.length) return ""
-  return str.split("").reverse().join("")
+  if (!str.length) return "";
+  return str.split("").reverse().join("");
 }
 
 function revString2(str) {
   let resultString = [];
   let totalItems = str.length - 1;
   for (var i = totalItems; i >= 0; i--) {
-    resultString.push(str[i])
+    resultString.push(str[i]);
   }
-  return resultString.join("")
+  return resultString.join("");
 }
 // console.log(revString2("Abhishek"));
 
@@ -120,7 +117,7 @@ function mergeSortArrays(arr1, arr2) {
   const arr1Length = sortedArr1.length;
   const arr2Length = sortedArr2.length;
   const maxLength = Math.max(arr1Length, arr2Length);
-  let finalArray = []
+  let finalArray = [];
   // for (let i = 0; i < maxLength; i++) {
   //   if(sortedArr1[i] < sortedArr2[i]){
   //     finalArray.push(sortedArr1[i])
@@ -132,8 +129,6 @@ function mergeSortArrays(arr1, arr2) {
 }
 // console.log(mergeSortArrays([1, 2, 3],[0, 3, 4, 5]))
 
-
-
 // Q3: Two Sum
 /**
  * @param {number[]} nums
@@ -144,16 +139,16 @@ var twoSum = function (nums, target) {
   let low = 0,
     high = nums.length - 1;
   while (low < high) {
-    let s = nums[low] + nums[high]
+    let s = nums[low] + nums[high];
     if (s === target) {
       return [low, high];
     } else if (s < target) {
-      low++
+      low++;
     } else {
       high--;
     }
   }
-  return []
+  return [];
 };
 
 // console.log(twoSum([2,7,11,15], 9));
@@ -170,14 +165,14 @@ const moveZeroes = function (nums) {
   let nonZeroIndex = 0;
   for (var i = 0; i < nums.length; i++) {
     if (nums[i] != 0) {
-      nums[nonZeroIndex] = nums[i]
-      nonZeroIndex++
+      nums[nonZeroIndex] = nums[i];
+      nonZeroIndex++;
     }
   }
   for (var i = nonZeroIndex; i < nums.length; i++) {
-    nums[i] = 0
+    nums[i] = 0;
   }
-  return nums
+  return nums;
 };
 
 // console.log(moveZeroes([0,1,0,3,12]));
@@ -194,13 +189,13 @@ const maxSubArray = function (nums) {
   for (var x of nums) {
     currentSum = currentSum + x;
     if (bestSum < currentSum) {
-      bestSum = currentSum
+      bestSum = currentSum;
     }
     if (currentSum < 0) {
-      currentSum = 0
+      currentSum = 0;
     }
   }
-  return bestSum
+  return bestSum;
 };
 // console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
 // console.log(maxSubArray([-1]));
@@ -214,10 +209,10 @@ const maxSubArray = function (nums) {
 const containsDuplicate = function (nums) {
   let duplicateContainer = {};
   for (var item of nums) {
-    if (duplicateContainer[item]) return true
-    duplicateContainer[item] = 1
+    if (duplicateContainer[item]) return true;
+    duplicateContainer[item] = 1;
   }
-  return false
+  return false;
 };
 
 // console.log(containsDuplicate([1,2,3,1]));
@@ -232,10 +227,10 @@ const containsDuplicate = function (nums) {
  */
 const rotate = function (nums, k) {
   k = k % nums.length;
-  replace(nums, 0, nums.length - 1)
-  replace(nums, k, nums.length - 1)
-  replace(nums, 0, k - 1)
-  return nums
+  replace(nums, 0, nums.length - 1);
+  replace(nums, k, nums.length - 1);
+  replace(nums, 0, k - 1);
+  return nums;
 };
 
 const replace = (nums, start, end) => {
@@ -244,20 +239,20 @@ const replace = (nums, start, end) => {
     nums[start] = nums[end];
     nums[end] = temp;
     start++;
-    end--
+    end--;
   }
-}
+};
 
 // console.log(rotate([1,2,3,4,5,6,7], 3));
 //
 // Q8: largest Word
 function LongestWord(sen) {
   const splitted = sen.split(" ");
-  let largestStr = ""
+  let largestStr = "";
   for (let item of splitted) {
-    const formattedString = item.replace(/[^a-zA-Z]/g, "")
+    const formattedString = item.replace(/[^a-zA-Z]/g, "");
     if (formattedString.length > largestStr.length) {
-      largestStr = formattedString
+      largestStr = formattedString;
     }
   }
   // code goes here
@@ -265,7 +260,6 @@ function LongestWord(sen) {
 }
 // console.log(LongestWord("@#$%TIME is very%^% !@*(*)IMPORTANT"));
 /****ARRAY*****/
-
 
 // let b = "10"
 // // Clousres
@@ -277,7 +271,6 @@ function LongestWord(sen) {
 //   c()
 // }
 // a();
-
 
 // Object prototype
 function doSomething() {}
@@ -291,8 +284,6 @@ doSomeInstancing.prop = "some value";
 // console.log("doSomething.prototype.prop: " + doSomething.prototype.prop);
 // console.log("doSomething.prototype.foo:  " + doSomething.prototype.foo);
 
-
-
 // function foo(){
 //   const bar = "bar";
 //   if(true){
@@ -302,24 +293,23 @@ doSomeInstancing.prop = "some value";
 // }
 // foo();
 
-
 function braces(values) {
   const bracesKeyMap = {
     "{": {
-      "closedBrace": "}"
+      closedBrace: "}",
     },
     "(": {
-      "closedBrace": ")"
+      closedBrace: ")",
     },
     "[": {
-      "closedBrace": "]"
-    }
-  }
-  let resultArray = []
+      closedBrace: "]",
+    },
+  };
+  let resultArray = [];
   for (let i = 0; i < values.length; i++) {
-    let isClosed = false
+    let isClosed = false;
     const el = values[i];
-    const elArr = el.split("")
+    const elArr = el.split("");
     for (let j = 0; j < elArr.length; j++) {
       const element = elArr[j];
       if (bracesKeyMap[element]) {
@@ -331,17 +321,15 @@ function braces(values) {
     }
     resultArray.push(isClosed);
   }
-  return resultArray
+  return resultArray;
 }
 
 // console.log(braces(['{}[]()', '{[}]']))
 
-
-
 let range = {
   from: 1,
-  to: 5
-}
+  to: 5,
+};
 
 range[Symbol.iterator] = function () {
   return {
@@ -352,16 +340,16 @@ range[Symbol.iterator] = function () {
       if (this.current <= this.last) {
         return {
           done: false,
-          value: this.current++
-        }
+          value: this.current++,
+        };
       } else {
         return {
-          done: true
-        }
+          done: true,
+        };
       }
-    }
-  }
-}
+    },
+  };
+};
 // console.log(range);
 for (const num of range) {
   // console.log(num);
@@ -369,7 +357,7 @@ for (const num of range) {
 
 function sumSalaries(obj) {
   const values = Object.values(obj);
-  return values.reduce((acc, val)=> acc + val, 0);
+  return values.reduce((acc, val) => acc + val, 0);
 }
 
 // console.log(sumSalaries({
@@ -391,31 +379,26 @@ for (const iterator of map.entries()) {
   // console.log(iterator);
 }
 
-
-
-
 // Write two functions that finds the factorial of any number. One should use recursive, the other should just use a for loop
 
 function findFactorialRecursive(number) {
-  if(number <= 2){
+  if (number <= 2) {
     return number;
   }
-  return number * findFactorialRecursive(number - 1) 
+  return number * findFactorialRecursive(number - 1);
 }
 
 function findFactorialIterative(number) {
   //code here
   let answer = 1;
   for (let index = 1; index <= number; index++) {
-    answer = answer * index    
+    answer = answer * index;
   }
   return answer;
 }
 
 // console.log(findFactorialIterative(6));
 // console.log(findFactorialRecursive(6));
-
-
 
 // Given a number N return the index value of the Fibonacci sequence, where the sequence is:
 
@@ -424,20 +407,19 @@ function findFactorialIterative(number) {
 
 //For example: fibonacciRecursive(6) should return 8
 
-function fibonacciIterative(n){
-  let arr = [0,1]
+function fibonacciIterative(n) {
+  let arr = [0, 1];
   for (let i = 2; i <= n; i++) {
-    arr.push(arr[i-2] + arr[i-1])
+    arr.push(arr[i - 2] + arr[i - 1]);
   }
   return arr[n];
 }
 
-
 function fibonacciRecursive(n) {
-  if(n < 2){
-    return n
+  if (n < 2) {
+    return n;
   }
-  return fibonacciRecursive(n-1) + fibonacciRecursive(n-2)
+  return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
 }
 
 // console.log(fibonacciRecursive(4))
@@ -445,27 +427,27 @@ function fibonacciRecursive(n) {
 
 //Implement a function that reverses a string using iteration...and then recursion!
 function reverseString(str) {
-  return str.split("")
+  return str.split("");
 }
 
 // console.log(reverseString('yoyo mastery'))
 //should return: 'yretsam oyoy'
 
-const unSortedNums = [1,21,34,2,87,8,90,109,1]
-console.log(unSortedNums);
+const unSortedNums = [1, 21, 34, 2, 87, 8, 90, 109, 1];
+// console.log(unSortedNums);
 
-function bubbleSort(nums){
+function bubbleSort(nums) {
   const numsLength = nums.length;
   for (let i = 0; i < numsLength; i++) {
     for (let j = 0; j < numsLength; j++) {
-      if(nums[j] > nums[j+1]){
+      if (nums[j] > nums[j + 1]) {
         let temp = nums[j];
-        nums[j] = nums[j+1]
-        nums[j+1] = temp
+        nums[j] = nums[j + 1];
+        nums[j + 1] = temp;
       }
     }
   }
-  return nums
+  return nums;
 }
 
 // console.log(bubbleSort(unSortedNums))
@@ -474,41 +456,138 @@ function selectionSort(nums) {
   const numsLength = nums.length;
   for (let i = 0; i < numsLength; i++) {
     let min = i;
-    let temp = nums[i]
-    for (let j = i+1; j < numsLength; j++) {
-      if(nums[j] < nums[min]){
-        min = j
+    let temp = nums[i];
+    for (let j = i + 1; j < numsLength; j++) {
+      if (nums[j] < nums[min]) {
+        min = j;
       }
     }
     nums[i] = nums[min];
-    nums[min] = temp
+    nums[min] = temp;
   }
-  return nums
+  return nums;
 }
 
 // console.log(selectionSort(unSortedNums))
 
-
 function insertionSort(array) {
   const length = array.length;
-	for (let i = 0; i < length; i++) {
-		if (array[i] < array[0]) {
+  for (let i = 0; i < length; i++) {
+    if (array[i] < array[0]) {
       //move number to the first position
-      array.unshift(array.splice(i,1)[0]);
+      array.unshift(array.splice(i, 1)[0]);
     } else {
       // only sort number smaller than number on the left of it. This is the part of insertion sort that makes it fast if the array is almost sorted.
-      if (array[i] < array[i-1]) {
+      if (array[i] < array[i - 1]) {
         //find where number should go
         for (var j = 1; j < i; j++) {
-          if (array[i] >= array[j-1] && array[i] < array[j]) {
+          if (array[i] >= array[j - 1] && array[i] < array[j]) {
             //move number to the right spot
-            array.splice(j,0,array.splice(i,1)[0]);
+            array.splice(j, 0, array.splice(i, 1)[0]);
           }
         }
       }
     }
   }
-  return array
+  return array;
 }
 
-console.log(insertionSort(unSortedNums))
+// console.log(insertionSort(unSortedNums))
+
+const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
+
+function mergeSort(array) {
+  if (array.length === 1) {
+    return array;
+  }
+  // Split Array in into right and left
+  const median = Math.floor(array.length / 2);
+  const left = array.slice(0, median);
+  const right = array.slice(median);
+
+  // console.log(left);
+  // console.log(right);
+
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right) {
+  const resultArray = [];
+  let leftIndex = 0,
+    rightIndex = 0;
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      resultArray.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      resultArray.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+  return resultArray
+    .concat(left.slice(leftIndex))
+    .concat(right.slice(rightIndex));
+}
+
+const answer = mergeSort(numbers);
+// console.log(answer);
+
+let range1 = {
+  from: 1,
+  to: 5,
+  [Symbol.iterator]() {
+    return {
+      current: this.from,
+      last: this.to,
+      next() {
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      },
+    };
+  },
+};
+for (const iterator of range1) {
+  // console.log(iterator);
+}
+
+let range2 = {
+  from: 1,
+  to: 5,
+  [Symbol.asyncIterator]() {
+    return {
+      current: this.from,
+      last: this.to,
+
+      async next() {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      },
+    };
+  },
+};
+
+// (async () => {
+//   for await(let iterator of range2){
+//     // console.log(iterator)
+//   }
+// })()
+
+// check sw support
+if ("serviceWorker" in navigator) {
+  // console.log("Service workers supported");
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then((req) => {
+        console.log("Service worker: registred");
+      })
+      .catch((err) => console.log(`Service worker: Error: ${err}`));
+  });
+}
