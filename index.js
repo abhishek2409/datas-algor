@@ -592,13 +592,12 @@ let range2 = {
 //   });
 // }
 
-
-function findColumnNum(str){
-  let result = 0
-  let n = str.length
+function findColumnNum(str) {
+  let result = 0;
+  let n = str.length;
   for (let i = 0; i < n; i++) {
-    const asciVal = str.charCodeAt(i) - 'A'.charCodeAt(0) + 1
-    result = result*26 + asciVal;
+    const asciVal = str.charCodeAt(i) - "A".charCodeAt(0) + 1;
+    result = result * 26 + asciVal;
   }
   return result;
 }
@@ -606,8 +605,7 @@ function findColumnNum(str){
 // console.log(findColumnNum("A"))
 // console.log(findColumnNum("Z"))
 
-
-function findColumnName(num){
+function findColumnName(num) {
   // let result = ""
   // for (let i = 0; i < num; i++) {
   //   const asciVal = str.charCodeAt(i) - 'A'.charCodeAt(0) + 1
@@ -616,109 +614,106 @@ function findColumnName(num){
   // return result;
 }
 
-
 // console.log(findColumnName(1))
 // console.log(findColumnName(26))
 
-
-function solution(A, B){
+function solution(A, B) {
   let oneCount = 0;
-  const value =  A * B;
-  const binValueStr = convertToBin(value)
+  const value = A * B;
+  const binValueStr = convertToBin(value);
   for (let i = 0; i < binValueStr.length; i++) {
-    if(binValueStr[i] == 1) oneCount++
+    if (binValueStr[i] == 1) oneCount++;
   }
   return oneCount;
 }
 
-function convertToBin(num){
-  return num.toString(2)
+function convertToBin(num) {
+  return num.toString(2);
 }
 
 function birthdayCakeCandles(candles) {
   // Write your code here
-  let maxNum = 0, maxNumCount = 0
-  let n = candles.length
-  for(let i = 0; i< n; i++){
-      const element = candles[i]
-      maxNum = Math.max(maxNum, element)
+  let maxNum = 0,
+    maxNumCount = 0;
+  let n = candles.length;
+  for (let i = 0; i < n; i++) {
+    const element = candles[i];
+    maxNum = Math.max(maxNum, element);
   }
   for (let i = 0; i < n; i++) {
-    if(maxNum === candles[i]) maxNumCount++
+    if (maxNum === candles[i]) maxNumCount++;
   }
-  return maxNumCount
+  return maxNumCount;
 }
 
 // console.log(birthdayCakeCandles([3,2,1,3]))
 // console.log(birthdayCakeCandles([1,4,1,3]))
 
-
-
 function timeConversion(s) {
-  let militaryTime = ""
+  let militaryTime = "";
   const splittedTimeArr = s.split(":");
   const secondsWithAMPM = splittedTimeArr[splittedTimeArr.length - 1];
   const hours = splittedTimeArr[0];
-  const minutes = splittedTimeArr[1]
-  const AMPM = secondsWithAMPM.substr(2)
-  const isAM = AMPM.indexOf("AM") > -1
-  const seconds = secondsWithAMPM.substr(0,2)
+  const minutes = splittedTimeArr[1];
+  const AMPM = secondsWithAMPM.substr(2);
+  const isAM = AMPM.indexOf("AM") > -1;
+  const seconds = secondsWithAMPM.substr(0, 2);
 
-  if(hours%12 < 12 && isAM){
-    militaryTime = `${hours}:${minutes}:${seconds}`
+  if (hours % 12 < 12 && isAM) {
+    militaryTime = `${hours}:${minutes}:${seconds}`;
   }
-  if(hours%12 < 12 && !isAM){
-    militaryTime = `${parseInt(hours)+12}:${minutes}:${seconds}`
+  if (hours % 12 < 12 && !isAM) {
+    militaryTime = `${parseInt(hours) + 12}:${minutes}:${seconds}`;
   }
 
-  if(hours%12 === 0 && isAM){
-    militaryTime = `00:${minutes}:${seconds}`
+  if (hours % 12 === 0 && isAM) {
+    militaryTime = `00:${minutes}:${seconds}`;
   }
-  if(hours%12 === 0 && !isAM){
-    militaryTime = `${hours}:${minutes}:${seconds}`
+  if (hours % 12 === 0 && !isAM) {
+    militaryTime = `${hours}:${minutes}:${seconds}`;
   }
   // console.log(militaryTime);
   return militaryTime;
 }
 
-timeConversion("07:05:45AM")
-timeConversion("07:05:45PM")
-timeConversion("12:05:45AM")
-timeConversion("12:01:00PM")
-
+timeConversion("07:05:45AM");
+timeConversion("07:05:45PM");
+timeConversion("12:05:45AM");
+timeConversion("12:01:00PM");
 
 // webpack, longest subsequent, performace, object  prototype, object.assign, object.flat, object deepCopy
 
-function deepCopy(obj){
+function deepCopy(obj) {
   let outObj, val, key;
 
-  if(typeof obj !== "object" || obj === null){
+  if (typeof obj !== "object" || obj === null) {
     return obj;
   }
 
-  outObj = Array.isArray(obj) ? [] : {}
+  outObj = Array.isArray(obj) ? [] : {};
 
   for (const key in obj) {
-    value = obj[key]
-    outObj[key] = deepCopy(value)
+    value = obj[key];
+    outObj[key] = deepCopy(value);
   }
 
-  return outObj
+  return outObj;
 }
 
 const aObj = {
-  a:1,
-  b:2, c:{d:3}}
-const bObj = Object.assign({}, aObj)
-const cObj = deepCopy(aObj)
+  a: 1,
+  b: 2,
+  c: { d: 3 },
+};
+const bObj = Object.assign({}, aObj);
+const cObj = deepCopy(aObj);
 aObj.c.d = 4;
 // console.log(aObj)
 // console.log(bObj)
 // console.log(cObj)
 
-
-function lcs(s1, s2){
-  if(s1.length === 0 || s2.length === 0){
+function lcs(s1, s2) {
+  if (s1.length === 0 || s2.length === 0) {
     return 0;
   }
   const s1WithoutLastChar = s1.substr(0, s1.length - 1);
@@ -726,39 +721,40 @@ function lcs(s1, s2){
 
   const s1LastChar = s1.charAt(s1.length - 1);
   const s2LastChar = s2.charAt(s2.length - 1);
-  if(s1LastChar == s2LastChar){
-    return 1 + lcs(s1WithoutLastChar, s2WithoutLastChar)
-  }else{
-    return Math.max(lcs(s1, s2WithoutLastChar), lcs(s1WithoutLastChar, s2))
+  if (s1LastChar == s2LastChar) {
+    return 1 + lcs(s1WithoutLastChar, s2WithoutLastChar);
+  } else {
+    return Math.max(lcs(s1, s2WithoutLastChar), lcs(s1WithoutLastChar, s2));
   }
 }
-
 
 // console.log(lcs("mhunuzqrkzsnidwbun","szulspmhwpazoxijwbq"));
 // console.log(lcs("ABCBDAB", "BDCABA"));
 
 const myThrottle = (fn, delay) => {
-  let isThrottled = false, savedArgs, savedThis;
-  function wrapper(){
-    if(isThrottled){
+  let isThrottled = false,
+    savedArgs,
+    savedThis;
+  function wrapper() {
+    if (isThrottled) {
       savedArgs = arguments;
       savedThis = this;
-      return
+      return;
     }
     fn.apply(this, arguments);
     isThrottled = true;
 
-    setTimeout(()=>{
-      isThrottled = false
+    setTimeout(() => {
+      isThrottled = false;
       console.log(savedArgs);
-      if(savedArgs){
-        wrapper.apply(savedThis, savedArgs)
-        savedArgs = savedThis = null
+      if (savedArgs) {
+        wrapper.apply(savedThis, savedArgs);
+        savedArgs = savedThis = null;
       }
-    }, delay)
+    }, delay);
   }
   return wrapper;
-}
+};
 // const handler = args => console.log(args)
 // const xy = myThrottle(handler, 5000)
 // xy("a");
@@ -767,3 +763,19 @@ const myThrottle = (fn, delay) => {
 // xy("d");
 // xy("e");
 // xy("f");
+
+function rob(nums) {
+  if(nums === null || nums.length === 0) return 0
+  if(nums.length === 1) return nums[0];
+  if(nums.length === 2) return Math.max(nums[0], nums[1]);
+  let maxMoneyRobbed = []
+  maxMoneyRobbed[0] = nums[0];
+  maxMoneyRobbed[1] = Math.max(nums[0], nums[1]);
+  for (let i = 2; i < nums.length; i++) {
+    maxMoneyRobbed[i] = Math.max(nums[i] + maxMoneyRobbed[i-2], maxMoneyRobbed[i-1])
+  }
+  return maxMoneyRobbed[nums.length - 1]
+}
+
+console.log(rob([1, 2, 3, 4]));
+console.log(rob([2, 7, 9, 3, 1]));
